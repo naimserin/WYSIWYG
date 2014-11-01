@@ -20,6 +20,10 @@
         #editable img {
             cursor: move;
         }
+        #editable .imgActive {
+            border: dotted 1px #00ffff;
+        }
+
     </style>
 </head>
 <body>
@@ -88,6 +92,9 @@
                 <br />
             </div>
         </div>
+        <div>
+
+        </div>
     </div>
 
 
@@ -121,7 +128,6 @@
         });
         $("[data-cEdit='left']").click(function (e) {
             var range = window.getSelection().focusNode;
-            alert(range.parentNode.nodeName);
             if (range.parentNode.nodeName == "STRONG" || range.parentNode.nodeName == "EM" || range.parentNode.nodeName == "A" || range.parentNode.nodeName == "IMG" || range.parentNode.nodeName == "VIDEO") {
                 range.parentNode.nextSibling.parentNode.style.textAlign = 'left';
             } else {
@@ -163,7 +169,10 @@
                         newNode.setAttribute('src', '/Upload/Sayfa/' + adi);
                     }
                     range.surroundContents(newNode);
-
+                    $("#editable img").mousedown(function () {
+                        $(this).addClass("imgActive");
+                    });
+                    
 
                 } else {
 
@@ -225,6 +234,7 @@
             }
         });
 
+        
     </script>
 
 </body>
