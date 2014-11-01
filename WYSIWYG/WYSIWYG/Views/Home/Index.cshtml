@@ -6,73 +6,10 @@
     <title>@ViewBag.Title</title>
 
     <link href="~/Src/css/bootstrap.min.css" rel="stylesheet" />
-    
+
     <script src="~/Src/js/jquery-1.11.1.min.js"></script>
     <script src="~/Src/js/bootstrap.min.js"></script>
     <script src="~/Src/js/ajaxupload.js"></script>
-
-</head>
-<body>
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">WYSIWYG</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <div class="container">
-    
-        <div class="btn-toolbar" role="toolbar" style="margin-bottom: 5px;">
-        <div class="btn-group btn-group-sm">
-            <a class="btn btn-default" title="Bold" data-cedit="bold"><span class="glyphicon glyphicon-bold"></span></a>
-            <a class="btn btn-default" title="Italic" data-cedit="italic"><span class="glyphicon glyphicon-italic"></span></a>
-        </div>
-        <div class="btn-group btn-group-sm">
-            <a class="btn btn-default" title="List" data-cedit="list"><span class="glyphicon glyphicon-th-list"></span></a>
-        </div>
-        <div class="btn-group btn-group-sm">
-            <a class="btn btn-default" title="Left" data-cedit="left"><span class="glyphicon glyphicon-align-left"></span></a>
-            <a class="btn btn-default" title="Center" data-cedit="center"><span class="glyphicon glyphicon-align-center"></span></a>
-            <a class="btn btn-default" title="Right" data-cedit="right"><span class="glyphicon glyphicon-align-right"></span></a>
-        </div>
-        <div class="btn-group btn-group-sm">
-            <a id="btnImageUpload" class="btn btn-default" title="Image Upload"><span class="glyphicon glyphicon-picture"></span></a>
-            <a id="btnVideoUpload" class="btn btn-default" title="Video Upload"><span class="glyphicon glyphicon-facetime-video"></span></a>
-            <a id="btnFileUpload" class="btn btn-default" title="File Upload"><span class="glyphicon glyphicon-paperclip"></span></a>
-        </div>
-        <div class="btn-group btn-group-sm">
-            <a class="btn btn-default" title="Link"><span class="glyphicon glyphicon-link"></span></a>
-        </div>
-    </div>
-    <div id="editable" contenteditable="true" data-bind="html: txtHtml">
-    </div>
-    </div>
-    
     <style>
         #editable {
             border: solid 1px #e0e0e0;
@@ -84,6 +21,76 @@
                 cursor: move;
             }
     </style>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">WYSIWYG</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container">
+
+        <div class="btn-toolbar" role="toolbar" style="margin-bottom: 5px;">
+            <div class="btn-group btn-group-sm">
+                <a class="btn btn-default" title="Bold" data-cedit="bold"><span class="glyphicon glyphicon-bold"></span></a>
+                <a class="btn btn-default" title="Italic" data-cedit="italic"><span class="glyphicon glyphicon-italic"></span></a>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <a class="btn btn-default" title="List" data-cedit="list"><span class="glyphicon glyphicon-th-list"></span></a>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <a class="btn btn-default" title="Left" data-cedit="left"><span class="glyphicon glyphicon-align-left"></span></a>
+                <a class="btn btn-default" title="Center" data-cedit="center"><span class="glyphicon glyphicon-align-center"></span></a>
+                <a class="btn btn-default" title="Right" data-cedit="right"><span class="glyphicon glyphicon-align-right"></span></a>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <a id="btnImageUpload" class="btn btn-default" title="Image Upload"><span class="glyphicon glyphicon-picture"></span></a>
+                <a id="btnVideoUpload" class="btn btn-default" title="Video Upload"><span class="glyphicon glyphicon-facetime-video"></span></a>
+                <a id="btnFileUpload" class="btn btn-default" title="File Upload"><span class="glyphicon glyphicon-paperclip"></span></a>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <a class="btn btn-default" title="Link" data-cedit="link"><span class="glyphicon glyphicon-link"></span></a>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <a class="btn btn-default" title="Source" data-cedit="source"><span class="glyphicon glyphicon-edit"></span></a>
+            </div>
+        </div>
+        <div id="editable" contenteditable="true" data-bind="html: txtHtml">
+            <div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+
     <script>
         $("[contenteditable='true']").on("focus", function () {
             console.log(document.getSelection());
@@ -114,22 +121,35 @@
         });
         $("[data-cEdit='left']").click(function (e) {
             var range = window.getSelection().focusNode;
-            range.parentNode.style.textAlign = 'left';
+            alert(range.parentNode.nodeName);
+            if (range.parentNode.nodeName == "STRONG" || range.parentNode.nodeName == "EM" || range.parentNode.nodeName == "A" || range.parentNode.nodeName == "IMG" || range.parentNode.nodeName == "VIDEO") {
+                range.parentNode.nextSibling.parentNode.style.textAlign = 'left';
+            } else {
+                range.parentNode.style.textAlign = 'left';
+            }
         });
         $("[data-cEdit='center']").click(function (e) {
             var range = window.getSelection().focusNode;
-            range.parentNode.style.textAlign = 'center';
+            if (range.parentNode.nodeName == "STRONG" || range.parentNode.nodeName == "EM" || range.parentNode.nodeName == "A" || range.parentNode.nodeName == "IMG" || range.parentNode.nodeName == "VIDEO") {
+                range.parentNode.nextSibling.parentNode.style.textAlign = 'center';
+            } else {
+                range.parentNode.style.textAlign = 'center';
+            }
         });
         $("[data-cEdit='right']").click(function (e) {
             var range = window.getSelection().focusNode;
-            range.parentNode.style.textAlign = 'right';
+            if (range.parentNode.nodeName == "STRONG" || range.parentNode.nodeName == "EM" || range.parentNode.nodeName == "A" || range.parentNode.nodeName == "IMG" || range.parentNode.nodeName == "VIDEO") {
+                range.parentNode.nextSibling.parentNode.style.textAlign = 'right';
+            } else {
+                range.parentNode.style.textAlign = 'right';
+            }
         });
 
         $("#btnImageUpload").ajaxUpload({
             url: "/home/SayfaFileUpload",
             name: "file",
             onSubmit: function () {
-                
+
             },
             onComplete: function (result) {
                 if (result != '"error"') {
@@ -144,9 +164,9 @@
                     }
                     range.surroundContents(newNode);
 
-                
+
                 } else {
-                
+
                 }
             }
         });
@@ -155,7 +175,7 @@
             url: "/home/SayfaFileUpload",
             name: "file",
             onSubmit: function () {
-                
+
             },
             onComplete: function (result) {
                 if (result != '"error"') {
@@ -172,9 +192,9 @@
                         newNode.innerText = 'İnternet tarayıcınız HTML5 desteklememektedir.';
                     }
                     range.surroundContents(newNode);
-                    
+
                 } else {
-                    
+
                 }
             }
         });
@@ -183,7 +203,7 @@
             url: "/home/SayfaFileUpload",
             name: "file",
             onSubmit: function () {
-                
+
             },
             onComplete: function (result) {
                 if (result != '"error"') {
@@ -198,9 +218,9 @@
                         newNode.innerText = window.getSelection().anchorNode.nodeValue;
                     }
                     range.surroundContents(newNode);
-                    
+
                 } else {
-                    
+
                 }
             }
         });
