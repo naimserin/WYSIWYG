@@ -132,6 +132,7 @@
     <Content Include="Src\js\bootstrap.min.js" />
     <Content Include="Src\js\jquery-1.11.1.min.js" />
     <Content Include="Src\js\npm.js" />
+    <Content Include="Src\js\wysiwyg.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

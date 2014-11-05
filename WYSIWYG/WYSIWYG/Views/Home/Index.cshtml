@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewBag.Title</title>
 
     <link href="~/Src/css/bootstrap.min.css" rel="stylesheet" />
@@ -10,6 +10,7 @@
     <script src="~/Src/js/jquery-1.11.1.min.js"></script>
     <script src="~/Src/js/bootstrap.min.js"></script>
     <script src="~/Src/js/ajaxupload.js"></script>
+    <script src="~/Src/js/wysiwyg.js"></script>
     <style>
         #editable {
             border: solid 1px #e0e0e0;
@@ -17,13 +18,45 @@
             min-height: 100px;
         }
 
-        #editable img {
-            cursor: move;
-        }
-        #editable .imgActive {
-            border: dotted 1px #00ffff;
-        }
+            #editable img {
+                cursor: move;
+            }
 
+            #editable .imgActive {
+                border: dotted 1px #00ffff;
+            }
+            blockquote {
+font-family: Georgia, serif;
+font-size: 18px;
+font-style: italic;
+width: 100%;
+margin: 0.25em 0;
+padding: 0.25em 40px;
+line-height: 1.45;
+position: relative;
+color: #383838;
+}
+
+blockquote:before {
+display: block;
+content: "\201C";
+font-size: 80px;
+position: absolute;
+left: -20px;
+top: -20px;
+color: #7a7a7a;
+}
+
+blockquote cite {
+color: #999999;
+font-size: 14px;
+display: block;
+margin-top: 5px;
+}
+ 
+blockquote cite:before {
+content: "\2014 \2009";
+}
     </style>
 </head>
 <body>
@@ -61,94 +94,118 @@
         </div>
     </nav>
     <div class="container">
-
-        <div class="btn-toolbar" role="toolbar" style="margin-bottom: 5px;">
+        <div style="margin-bottom: 5px;">
             <div class="btn-group btn-group-sm">
-                <a class="btn btn-default" title="Bold" data-cedit="bold"><span class="glyphicon glyphicon-bold"></span></a>
-                <a class="btn btn-default" title="Italic" data-cedit="italic"><span class="glyphicon glyphicon-italic"></span></a>
+                <button class="btn btn-default dropdown-toggle" title="Font Family" data-toggle="dropdown"><span class="glyphicon glyphicon-font"></span>&nbsp;<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="font-family">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:cursive;" data-font-family="cursive" data-cedit="font-family">Cursive</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:fantasy;" data-font-family="fantasy" data-cedit="font-family">Fantasy</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:monospace;" data-font-family="monospace" data-cedit="font-family">Monospace</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:sans-serif;" data-font-family="sans-serif" data-cedit="font-family">Sans-Serif</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:serif;" data-font-family="serif" data-cedit="font-family">Serif</a></li>
+                </ul>
+            </div>            
+            <div class="btn-group btn-group-sm">
+                <button class="btn btn-default" title="Bold" data-cedit="bold"><span class="glyphicon glyphicon-bold"></span></button>
+                <button class="btn btn-default" title="Italic" data-cedit="italic"><span class="glyphicon glyphicon-italic"></span></button>
             </div>
             <div class="btn-group btn-group-sm">
-                <a class="btn btn-default" title="List" data-cedit="list"><span class="glyphicon glyphicon-th-list"></span></a>
+                <button class="btn btn-default" title="List" data-cedit="list"><span class="glyphicon glyphicon-th-list"></span></button>
             </div>
             <div class="btn-group btn-group-sm">
-                <a class="btn btn-default" title="Left" data-cedit="left"><span class="glyphicon glyphicon-align-left"></span></a>
-                <a class="btn btn-default" title="Center" data-cedit="center"><span class="glyphicon glyphicon-align-center"></span></a>
-                <a class="btn btn-default" title="Right" data-cedit="right"><span class="glyphicon glyphicon-align-right"></span></a>
+                <button class="btn btn-default" title="Left" data-cedit="left"><span class="glyphicon glyphicon-align-left"></span></button>
+                <button class="btn btn-default" title="Center" data-cedit="center"><span class="glyphicon glyphicon-align-center"></span></button>
+                <button class="btn btn-default" title="Right" data-cedit="right"><span class="glyphicon glyphicon-align-right"></span></button>
             </div>
             <div class="btn-group btn-group-sm">
-                <a id="btnImageUpload" class="btn btn-default" title="Image Upload"><span class="glyphicon glyphicon-picture"></span></a>
-                <a id="btnVideoUpload" class="btn btn-default" title="Video Upload"><span class="glyphicon glyphicon-facetime-video"></span></a>
-                <a id="btnFileUpload" class="btn btn-default" title="File Upload"><span class="glyphicon glyphicon-paperclip"></span></a>
+                <button id="btnImageUpload" class="btn btn-default" title="Image Upload"><span class="glyphicon glyphicon-picture"></span></button>
+                <button id="btnVideoUpload" class="btn btn-default" title="Video Upload"><span class="glyphicon glyphicon-facetime-video"></span></button>
+                <button id="btnFileUpload" class="btn btn-default" title="File Upload"><span class="glyphicon glyphicon-paperclip"></span></button>
             </div>
             <div class="btn-group btn-group-sm">
-                <a class="btn btn-default" title="Link" data-cedit="link"><span class="glyphicon glyphicon-link"></span></a>
+                <button class="btn btn-default dropdown-toggle" title="Link" onclick="$('#linkForm').toggle();"><span class="glyphicon glyphicon-link"></span></button>
+                <div id="linkForm" style="position:absolute; top:32px; left:0px; box-shadow:0px 3px 5px #e0e0e0; border-radius:5px; display:none;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="http://" id="txtLink" style="width:160px;" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" data-cedit="link">Ok!</button>
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="btn-group btn-group-sm">
-                <a class="btn btn-default" title="Source" data-cedit="source"><span class="glyphicon glyphicon-edit"></span></a>
+                <button class="btn btn-default" title="Source" data-cedit="source" ><span class="glyphicon glyphicon-edit"></span></button>
             </div>
-        </div>
-        <div id="editable" contenteditable="true" data-bind="html: txtHtml">
+            <div class="btn-group btn-group-sm">
+                <button class="btn btn-default" title="Blockquote" data-cedit="blockquote">Blockquote</button>
+                <button class="btn btn-default" title="Cite" data-cedit="cite">Cite</button>
+            </div>
+        </div>        
+        <div id="editable" contenteditable="true" style="display:block;">
             <div>
                 <br />
             </div>
         </div>
-        <div>
-
-        </div>
+        <textarea id="editableSource" class="form-control" style="display:none;"></textarea>        
     </div>
-
-
     <script>
-        $("[contenteditable='true']").on("focus", function () {
-            console.log(document.getSelection());
+        $("[data-cedit='font-family']").click(function () {
+            document.execCommand('fontName', false, $(this).attr('data-font-family'));
         });
-        $("[data-cEdit='bold']").click(function () {
+        $("[data-cedit='bold']").click(function () {
+            document.execCommand('bold', false, null);
+        });
+        $("[data-cedit='italic']").click(function () {
+            document.execCommand('italic', false, null);
+        });
+        $("[data-cedit='list']").click(function () {
+            document.execCommand('insertOrderedList', false, null);
+        });
+        $("[data-cedit='left']").click(function (e) {
+            document.execCommand('justifyLeft', false, null);
+        });
+        $("[data-cedit='center']").click(function (e) {
+            document.execCommand('justifyCenter', false, null);
+        });
+        $("[data-cedit='right']").click(function (e) {
+            document.execCommand('justifyRight', false, null);
+        });
+        $("[data-cedit='link']").click(function (e) {
+                document.execCommand('createLink', false, $("#txtLink").val());
+                $('#linkForm').toggle();
+        });
+        var sourceStatus = false;
+        $("[data-cedit='source']").click(function (e) {
+            if (sourceStatus == false) {
+                $("#editableSource").show();
+                $("#editableSource").val($("#editable").html());
+                $("#editable").hide();
+                sourceStatus = true;
+            } else {
+                $("#editable").show();
+                $("#editable").html($("#editableSource").val());
+                $("#editableSource").hide();
+                sourceStatus = false;
+            }
+            
+        });
+        $("[data-cedit='blockquote']").click(function (e) {
+            
             var range = window.getSelection().getRangeAt(0);
             var newNode;
-            if (range.commonAncestorContainer.parentNode != "strong") {
-                newNode = document.createElement('strong');
-            }
-            range.surroundContents(newNode);
+            
+                newNode = document.createElement('blockquote');
+                range.surroundContents(newNode);
+            
+            
         });
-        $("[data-cEdit='italic']").click(function () {
+        $("[data-cedit='cite']").click(function (e) {
             var range = window.getSelection().getRangeAt(0);
             var newNode;
-            if (range.commonAncestorContainer.parentNode != "em") {
-                newNode = document.createElement('em');
+            if (range.commonAncestorContainer.parentNode != "cite") {
+                newNode = document.createElement('cite');
             }
             range.surroundContents(newNode);
-        });
-        $("[data-cEdit='list']").click(function () {
-            var range = window.getSelection().getRangeAt(0);
-            var newNode;
-            newNode = document.createElement("li");
-            range.surroundContents(newNode);
-            newNode = document.createElement("ul");
-            range.surroundContents(newNode);
-        });
-        $("[data-cEdit='left']").click(function (e) {
-            var range = window.getSelection().focusNode;
-            if (range.parentNode.nodeName == "STRONG" || range.parentNode.nodeName == "EM" || range.parentNode.nodeName == "A" || range.parentNode.nodeName == "IMG" || range.parentNode.nodeName == "VIDEO") {
-                range.parentNode.nextSibling.parentNode.style.textAlign = 'left';
-            } else {
-                range.parentNode.style.textAlign = 'left';
-            }
-        });
-        $("[data-cEdit='center']").click(function (e) {
-            var range = window.getSelection().focusNode;
-            if (range.parentNode.nodeName == "STRONG" || range.parentNode.nodeName == "EM" || range.parentNode.nodeName == "A" || range.parentNode.nodeName == "IMG" || range.parentNode.nodeName == "VIDEO") {
-                range.parentNode.nextSibling.parentNode.style.textAlign = 'center';
-            } else {
-                range.parentNode.style.textAlign = 'center';
-            }
-        });
-        $("[data-cEdit='right']").click(function (e) {
-            var range = window.getSelection().focusNode;
-            if (range.parentNode.nodeName == "STRONG" || range.parentNode.nodeName == "EM" || range.parentNode.nodeName == "A" || range.parentNode.nodeName == "IMG" || range.parentNode.nodeName == "VIDEO") {
-                range.parentNode.nextSibling.parentNode.style.textAlign = 'right';
-            } else {
-                range.parentNode.style.textAlign = 'right';
-            }
         });
 
         $("#btnImageUpload").ajaxUpload({
@@ -172,7 +229,7 @@
                     $("#editable img").mousedown(function () {
                         $(this).addClass("imgActive");
                     });
-                    
+
 
                 } else {
 
@@ -233,9 +290,6 @@
                 }
             }
         });
-
-        
     </script>
-
 </body>
 </html>
