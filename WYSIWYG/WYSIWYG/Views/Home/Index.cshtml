@@ -15,7 +15,7 @@
         #editable {
             border: solid 1px #e0e0e0;
             border-radius: 4px;
-            min-height: 100px;
+            min-height: 200px;
         }
 
             #editable img {
@@ -25,38 +25,39 @@
             #editable .imgActive {
                 border: dotted 1px #00ffff;
             }
-            blockquote {
-font-family: Georgia, serif;
-font-size: 18px;
-font-style: italic;
-width: 100%;
-margin: 0.25em 0;
-padding: 0.25em 40px;
-line-height: 1.45;
-position: relative;
-color: #383838;
-}
 
-blockquote:before {
-display: block;
-content: "\201C";
-font-size: 80px;
-position: absolute;
-left: -20px;
-top: -20px;
-color: #7a7a7a;
-}
+        blockquote {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            font-style: italic;
+            width: 100%;
+            margin: 0.25em 0;
+            padding: 0.25em 40px;
+            line-height: 1.45;
+            position: relative;
+            color: #383838;
+        }
 
-blockquote cite {
-color: #999999;
-font-size: 14px;
-display: block;
-margin-top: 5px;
-}
- 
-blockquote cite:before {
-content: "\2014 \2009";
-}
+            blockquote:before {
+                display: block;
+                content: "\201C";
+                font-size: 80px;
+                position: absolute;
+                left: -20px;
+                top: -20px;
+                color: #7a7a7a;
+            }
+
+            blockquote cite {
+                color: #999999;
+                font-size: 14px;
+                display: block;
+                margin-top: 5px;
+            }
+
+                blockquote cite:before {
+                    content: "\2014 \2009";
+                }
     </style>
 </head>
 <body>
@@ -94,17 +95,17 @@ content: "\2014 \2009";
         </div>
     </nav>
     <div class="container">
-        <div style="margin-bottom: 5px;">
+        <div style="margin-bottom: 5px;" class="toolbox">
             <div class="btn-group btn-group-sm">
                 <button class="btn btn-default dropdown-toggle" title="Font Family" data-toggle="dropdown"><span class="glyphicon glyphicon-font"></span>&nbsp;<span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="font-family">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:cursive;" data-font-family="cursive" data-cedit="font-family">Cursive</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:fantasy;" data-font-family="fantasy" data-cedit="font-family">Fantasy</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:monospace;" data-font-family="monospace" data-cedit="font-family">Monospace</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:sans-serif;" data-font-family="sans-serif" data-cedit="font-family">Sans-Serif</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family:serif;" data-font-family="serif" data-cedit="font-family">Serif</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: cursive;" data-font-family="cursive" data-cedit="font-family">Cursive</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: fantasy;" data-font-family="fantasy" data-cedit="font-family">Fantasy</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: monospace;" data-font-family="monospace" data-cedit="font-family">Monospace</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: sans-serif;" data-font-family="sans-serif" data-cedit="font-family">Sans-Serif</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: serif;" data-font-family="serif" data-cedit="font-family">Serif</a></li>
                 </ul>
-            </div>            
+            </div>
             <div class="btn-group btn-group-sm">
                 <button class="btn btn-default" title="Bold" data-cedit="bold"><span class="glyphicon glyphicon-bold"></span></button>
                 <button class="btn btn-default" title="Italic" data-cedit="italic"><span class="glyphicon glyphicon-italic"></span></button>
@@ -124,31 +125,30 @@ content: "\2014 \2009";
             </div>
             <div class="btn-group btn-group-sm">
                 <button class="btn btn-default dropdown-toggle" title="Link" onclick="$('#linkForm').toggle();"><span class="glyphicon glyphicon-link"></span></button>
-                <div id="linkForm" style="position:absolute; top:32px; left:0px; box-shadow:0px 3px 5px #e0e0e0; border-radius:5px; display:none;">
+                <div id="linkForm" style="position: absolute; top: 32px; left: 0px; box-shadow: 0px 3px 5px #e0e0e0; border-radius: 5px; display: none;">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="http://" id="txtLink" style="width:160px;" />
+                        <input type="text" class="form-control" placeholder="http://" id="txtLink" style="width: 160px;" />
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" data-cedit="link">Ok!</button>
                         </span>
                     </div>
                 </div>
-            </div>
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default" title="Source" data-cedit="source" ><span class="glyphicon glyphicon-edit"></span></button>
-            </div>
+            </div>            
             <div class="btn-group btn-group-sm">
                 <button class="btn btn-default" title="Blockquote" data-cedit="blockquote">Blockquote</button>
                 <button class="btn btn-default" title="Cite" data-cedit="cite">Cite</button>
             </div>
-        </div>        
-        <div id="editable" contenteditable="true" style="display:block;">
-            <div>
-                <br />
+            <div class="btn-group btn-group-sm">
+                <button class="btn btn-default" title="Source" data-cedit="source"><span class="glyphicon glyphicon-edit"></span></button>
             </div>
         </div>
-        <textarea id="editableSource" class="form-control" style="display:none;"></textarea>        
+        <div id="editable" contenteditable="true" style="display: block;"></div>
+        <textarea id="editableSource" rows="15" class="form-control" style="display: none;"></textarea>
     </div>
     <script>
+        $("[contenteditable='true']").keyup(function () {
+            $("#editableSource").val(String($("#editable").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, ''));
+        });
         $("[data-cedit='font-family']").click(function () {
             document.execCommand('fontName', false, $(this).attr('data-font-family'));
         });
@@ -171,14 +171,14 @@ content: "\2014 \2009";
             document.execCommand('justifyRight', false, null);
         });
         $("[data-cedit='link']").click(function (e) {
-                document.execCommand('createLink', false, $("#txtLink").val());
-                $('#linkForm').toggle();
+            document.execCommand('createLink', false, $("#txtLink").val());
+            $('#linkForm').toggle();
         });
         var sourceStatus = false;
         $("[data-cedit='source']").click(function (e) {
             if (sourceStatus == false) {
                 $("#editableSource").show();
-                $("#editableSource").val($("#editable").html());
+                $("#editableSource").val(String($("#editable").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, ''));
                 $("#editable").hide();
                 sourceStatus = true;
             } else {
@@ -187,17 +187,14 @@ content: "\2014 \2009";
                 $("#editableSource").hide();
                 sourceStatus = false;
             }
-            
+
         });
         $("[data-cedit='blockquote']").click(function (e) {
-            
             var range = window.getSelection().getRangeAt(0);
             var newNode;
-            
-                newNode = document.createElement('blockquote');
-                range.surroundContents(newNode);
-            
-            
+
+            newNode = document.createElement('blockquote');
+            range.surroundContents(newNode);
         });
         $("[data-cedit='cite']").click(function (e) {
             var range = window.getSelection().getRangeAt(0);
