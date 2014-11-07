@@ -1,5 +1,5 @@
 ﻿$("[contenteditable='true']").keyup(function () {
-    $("#editableSource").val(String($("#editable").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, ''));
+    $("#editableSource").val(ungzip(String($("#editable").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
 });
 $("[data-cedit='font-family']").click(function () {
     document.execCommand('fontName', false, $(this).attr('data-font-family'));
@@ -26,21 +26,6 @@ $("[data-cedit='link']").click(function (e) {
     document.execCommand('createLink', false, $("#txtLink").val());
     $('#linkForm').toggle();
 });
-var sourceStatus = false;
-$("[data-cedit='source']").click(function (e) {
-    if (sourceStatus == false) {
-        $("#editableSource").show();
-        $("#editableSource").val(String($("#editable").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, ''));
-        $("#editable").hide();
-        sourceStatus = true;
-    } else {
-        $("#editable").show();
-        $("#editable").html($("#editableSource").val());
-        $("#editableSource").hide();
-        sourceStatus = false;
-    }
-
-});
 $("[data-cedit='blockquote']").click(function (e) {
     var range = window.getSelection().getRangeAt(0);
     var newNode;
@@ -55,6 +40,22 @@ $("[data-cedit='cite']").click(function (e) {
         newNode = document.createElement('cite');
     }
     range.surroundContents(newNode);
+});
+
+var sourceStatus = false;
+$("[data-cedit='source']").click(function (e) {
+    if (sourceStatus == false) {
+        $("#editableSource").show();
+        $("#editableSource").val(ungzip(String($("#editable").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
+        $("#editable").hide();
+        sourceStatus = true;
+    } else {
+        $("#editable").show();
+        $("#editable").html(gzip($("#editableSource").val()));
+        $("#editableSource").hide();
+        sourceStatus = false;
+    }
+
 });
 
 $("#btnImageUpload").ajaxUpload({
@@ -139,3 +140,40 @@ $("#btnFileUpload").ajaxUpload({
         }
     }
 });
+var gzip = function (t) {
+    var text = t;
+    for (var i = 0; i < 5; i++) {
+        text = String(text).replace(/<!--([\s\S]*?)-->/mig, ' ');
+        //text = String(text).replace(/\/\/.*?\/?\*.+?(?=\n|\r)|\/\*[\s\S]*?\/\/[\s\S]*?\*\//g, ' ');
+        text = String(text).replace(/\n/g, " ");
+        text = String(text).replace(/  /g, " ");
+        text = String(text).replace(/   /g, " ");
+        text = String(text).replace(/    /g, " ");
+        text = String(text).replace(/     /g, " ");
+        text = String(text).replace(/      /g, " ");
+        text = String(text).replace(/       /g, " ");
+        text = String(text).replace(/        /g, " ");
+        text = String(text).replace(/	/g, " ");
+        text = String(text).replace(/> </g, "><");
+    }
+    return text;
+};
+var ungzip = function (t) {
+    var text = t;
+    text = String(text).replace(/\/>/g, "/>\n");
+    text = String(text).replace(/<\/div>/g, "<\/div>\n");
+    text = String(text).replace(/<\/table>/g, "<\/table>\n");
+    text = String(text).replace(/<\/ul>/g, "<\/ul>\n");
+    text = String(text).replace(/<\/li>/g, "<\/li>\n");
+    text = String(text).replace(/<\/p>/g, "<\/p>\n");
+    text = String(text).replace(/<\/script>/g, "<\/script>\n");
+    text = String(text).replace(/<\/tr>/g, "<\/tr>\n");
+    text = String(text).replace(/<\/td>/g, "<\/td>\n");
+    text = String(text).replace(/<\/th>/g, "<\/th>\n");
+    text = String(text).replace(/<\/title>/g, "<\/title>\n");
+    text = String(text).replace(/></g, ">\n<");
+
+    text = String(text).replace(/\);/g, ");\n");
+    text = String(text).replace(/\};/g, "};\n");
+    return text;
+};
