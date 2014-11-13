@@ -12,21 +12,6 @@
     <script src="~/Src/js/ajaxupload.js"></script>
     
     <style>
-        #editable {
-            border: solid 1px #e0e0e0;
-            border-radius: 4px;
-            min-height: 200px;
-            padding:10px;
-        }
-
-            #editable img {
-                cursor: move;
-            }
-
-            #editable .imgActive {
-                border: dotted 1px #00ffff;
-            }
-
         blockquote {
             font-family: Georgia, serif;
             font-size: 18px;
@@ -96,199 +81,207 @@
         </div>
     </nav>
     <div class="container">
-        <div style="margin-bottom: 5px;" class="toolbox">
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default dropdown-toggle" title="Font Family" data-toggle="dropdown"><span class="glyphicon glyphicon-font"></span>&nbsp;<span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="font-family">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: cursive;" data-font-family="cursive" data-cedit="font-family">Cursive</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: fantasy;" data-font-family="fantasy" data-cedit="font-family">Fantasy</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: monospace;" data-font-family="monospace" data-cedit="font-family">Monospace</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: sans-serif;" data-font-family="sans-serif" data-cedit="font-family">Sans-Serif</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: serif;" data-font-family="serif" data-cedit="font-family">Serif</a></li>
-                </ul>
-            </div>
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default" title="Bold" data-cedit="bold"><span class="glyphicon glyphicon-bold"></span></button>
-                <button class="btn btn-default" title="Italic" data-cedit="italic"><span class="glyphicon glyphicon-italic"></span></button>
-            </div>
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default" title="List" data-cedit="list"><span class="glyphicon glyphicon-th-list"></span></button>
-            </div>
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default" title="Left" data-cedit="left"><span class="glyphicon glyphicon-align-left"></span></button>
-                <button class="btn btn-default" title="Center" data-cedit="center"><span class="glyphicon glyphicon-align-center"></span></button>
-                <button class="btn btn-default" title="Right" data-cedit="right"><span class="glyphicon glyphicon-align-right"></span></button>
-            </div>
-            <div class="btn-group btn-group-sm">
-                <button id="btnImageUpload" class="btn btn-default" title="Image Upload"><span class="glyphicon glyphicon-picture"></span></button>
-                <button id="btnVideoUpload" class="btn btn-default" title="Video Upload"><span class="glyphicon glyphicon-facetime-video"></span></button>
-                <button id="btnFileUpload" class="btn btn-default" title="File Upload"><span class="glyphicon glyphicon-paperclip"></span></button>
-            </div>
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default dropdown-toggle" title="Link" onclick="$('#linkForm').toggle();"><span class="glyphicon glyphicon-link"></span></button>
-                <div id="linkForm" style="position: absolute; top: 32px; left: 0px; box-shadow: 0px 3px 5px #e0e0e0; border-radius: 5px; display: none;">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="http://" id="txtLink" style="width: 160px;" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" data-cedit="link">Ok!</button>
-                        </span>
-                    </div>
-                </div>
-            </div>            
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default" title="Blockquote" data-cedit="blockquote">Blockquote</button>
-                <button class="btn btn-default" title="Cite" data-cedit="cite">Cite</button>
-            </div>
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default" title="Source" data-cedit="source"><span class="glyphicon glyphicon-edit"></span></button>
-            </div>
-        </div>
-        <div id="editable" contenteditable="true" style="display: block;"></div>
-        <textarea id="editableSource" rows="15" class="form-control" style="display: none;"></textarea>
+        <textarea id="editableSource" data-editor="true" rows="15" class="form-control" style="display: none;"></textarea>
+        <textarea id="editableSource1" data-editor="true" rows="15" class="form-control" style="display: none;"></textarea>
     </div>
     <script>
-        $("[contenteditable='true']").keyup(function () {
-            $("#editableSource").val(ungzip(String($("#editable").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
-        });
-        $("[data-cedit='font-family']").click(function () {
-            document.execCommand('fontName', false, $(this).attr('data-font-family'));
-        });
-        $("[data-cedit='bold']").click(function () {
-            document.execCommand('bold', false, null);
-        });
-        $("[data-cedit='italic']").click(function () {
-            document.execCommand('italic', false, null);
-        });
-        $("[data-cedit='list']").click(function () {
-            document.execCommand('insertOrderedList', false, null);
-        });
-        $("[data-cedit='left']").click(function (e) {
-            document.execCommand('justifyLeft', false, null);
-        });
-        $("[data-cedit='center']").click(function (e) {
-            document.execCommand('justifyCenter', false, null);
-        });
-        $("[data-cedit='right']").click(function (e) {
-            document.execCommand('justifyRight', false, null);
-        });
-        $("[data-cedit='link']").click(function (e) {
-            document.execCommand('createLink', false, $("#txtLink").val());
-            $('#linkForm').toggle();
-        });        
-        $("[data-cedit='blockquote']").click(function (e) {
-            var range = window.getSelection().getRangeAt(0);
-            var newNode;
+        var editor = function () {
+            $("[data-editor='true']").each(function (i, item) {
+                var tool = '<div style="margin-bottom: 5px;" class="toolbox">';
+                tool += '<div class="btn-group btn-group-sm">';
+                tool += '<button class="btn btn-default dropdown-toggle" title="Font Family" data-toggle="dropdown"><span class="glyphicon glyphicon-font"></span>&nbsp;<span class="caret"></span></button>';
+                tool += '<ul class="dropdown-menu" role="menu" aria-labelledby="font-family">';
+                tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: cursive;" data-font-family="cursive" data-cedit="font-family">Cursive</a></li>';
+                tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: fantasy;" data-font-family="fantasy" data-cedit="font-family">Fantasy</a></li>';
+                tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: monospace;" data-font-family="monospace" data-cedit="font-family">Monospace</a></li>';
+                tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: sans-serif;" data-font-family="sans-serif" data-cedit="font-family">Sans-Serif</a></li>';
+                tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: serif;" data-font-family="serif" data-cedit="font-family">Serif</a></li>';
+                tool += '</ul>';
+                tool += '</div>';
+                tool += '<div class="btn-group btn-group-sm">';
+                tool += '<button class="btn btn-default" title="Bold" data-cedit="bold"><span class="glyphicon glyphicon-bold"></span></button>';
+                tool += '<button class="btn btn-default" title="Italic" data-cedit="italic"><span class="glyphicon glyphicon-italic"></span></button>';
+                tool += '</div>';
+                tool += '<div class="btn-group btn-group-sm">';
+                tool += '<button class="btn btn-default" title="List" data-cedit="list"><span class="glyphicon glyphicon-th-list"></span></button>';
+                tool += '</div>';
+                tool += '<div class="btn-group btn-group-sm">';
+                tool += '<button class="btn btn-default" title="Left" data-cedit="left"><span class="glyphicon glyphicon-align-left"></span></button>';
+                tool += '<button class="btn btn-default" title="Center" data-cedit="center"><span class="glyphicon glyphicon-align-center"></span></button>';
+                tool += '<button class="btn btn-default" title="Right" data-cedit="right"><span class="glyphicon glyphicon-align-right"></span></button>';
+                tool += '</div>';
+                tool += '<div class="btn-group btn-group-sm">';
+                tool += '<button id="btnImageUpload' + i + '" class="btn btn-default" title="Image Upload"><span class="glyphicon glyphicon-picture"></span></button>';
+                tool += '<button id="btnVideoUpload' + i + '" class="btn btn-default" title="Video Upload"><span class="glyphicon glyphicon-facetime-video"></span></button>';
+                tool += '<button id="btnFileUpload' + i + '" class="btn btn-default" title="File Upload"><span class="glyphicon glyphicon-paperclip"></span></button>';
+                tool += '</div>';
+                tool += '<div class="btn-group btn-group-sm">';
+                tool += '<button class="btn btn-default dropdown-toggle" title="Link" data-cedit="btnLink' + i + '"><span class="glyphicon glyphicon-link"></span></button>';
+                tool += '<div style="position: absolute; top: 32px; left: 0px; box-shadow: 0px 3px 5px #e0e0e0; border-radius: 5px; display: none;">';
+                tool += '<div class="input-group">';
+                tool += '<input type="text" class="form-control" placeholder="http://" id="txtLink' + i + '" style="width: 160px;" />';
+                tool += '<span class="input-group-btn">';
+                tool += '<button class="btn btn-default" type="button" data-cedit="link' + i + '">Ok!</button>';
+                tool += '</span>';
+                tool += '</div>';
+                tool += '</div>';
+                tool += '</div>';
+                tool += '<div class="btn-group btn-group-sm">';
+                tool += '<button class="btn btn-default" title="Blockquote" data-cedit="blockquote">Blockquote</button>';
+                tool += '<button class="btn btn-default" title="Cite" data-cedit="cite">Cite</button>';
+                tool += '</div>';
+                tool += '<div class="btn-group btn-group-sm">';
+                tool += '<button class="btn btn-default" title="Source" data-cedit="source' + i + '"><span class="glyphicon glyphicon-edit"></span></button>';
+                tool += '</div>';
+                tool += '</div>';
+                tool += '<div contenteditable="true" data-editor-id="e' + i + '" style="display: block;border: solid 1px #e0e0e0;border-radius: 4px;min-height: 200px;padding:10px;"></div>';
 
-            newNode = document.createElement('blockquote');
-            range.surroundContents(newNode);
-        });
-        $("[data-cedit='cite']").click(function (e) {
-            var range = window.getSelection().getRangeAt(0);
-            var newNode;
-            if (range.commonAncestorContainer.parentNode != "cite") {
-                newNode = document.createElement('cite');
-            }
-            range.surroundContents(newNode);
-        });
+                $(this).before(tool);
+                $(this).attr({ 'data-editor-id': 's' + i });
+                $(this).attr({ 'style': 'display:none;min-height:300px;' });
 
-        var sourceStatus = false;
-        $("[data-cedit='source']").click(function (e) {
-            if (sourceStatus == false) {
-                $("#editableSource").show();
-                $("#editableSource").val(ungzip(String($("#editable").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
-                $("#editable").hide();
-                sourceStatus = true;
-            } else {
-                $("#editable").show();
-                $("#editable").html(gzip($("#editableSource").val()));
-                $("#editableSource").hide();
-                sourceStatus = false;
-            }
 
-        });
+                $("[data-editor-id='e" + i + "']").on("keypress focusin focusout change click focus", function () {
+                    $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
+                });
+                $("[data-editor-id='s" + i + "']").on("keypress focusin focusout change click focus", function () {
+                    $("[data-editor-id='e" + i + "']").html(gzip($("[data-editor-id='s" + i + "']").val()));
+                });
 
-        $("#btnImageUpload").ajaxUpload({
-            url: "/home/SayfaFileUpload",
-            name: "file",
-            onSubmit: function () {
-
-            },
-            onComplete: function (result) {
-                if (result != '"error"') {
-                    var adi = String(result).replace(/\"/g, "").split("|")[0];
-                    var type = String(result).replace(/\"/g, "").split("|")[1];
-
-                    var range = window.getSelection().getRangeAt(0);
-                    var newNode;
-                    if (range.commonAncestorContainer.parentNode != "img") {
-                        newNode = document.createElement('img');
-                        newNode.setAttribute('src', '/Upload/Sayfa/' + adi);
+                $("[data-cedit='source" + i + "']").click(function (e) {
+                    if ($("[data-editor-id='s" + i + "']").is(':visible') == false) {
+                        $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
+                        $("[data-editor-id='s" + i + "']").show();
+                        $("[data-editor-id='e" + i + "']").hide();
+                    } else {
+                        $("[data-editor-id='e" + i + "']").html(gzip($("[data-editor-id='s" + i + "']").val()));
+                        $("[data-editor-id='e" + i + "']").show();
+                        $("[data-editor-id='s" + i + "']").hide();
                     }
-                    range.surroundContents(newNode);
-                    $("#editable img").mousedown(function () {
-                        $(this).addClass("imgActive");
-                    });
+                });
+                $("#btnImageUpload" + i + "").ajaxUpload({
+                    url: "/home/SayfaFileUpload",
+                    name: "file",
+                    onSubmit: function () {
 
+                    },
+                    onComplete: function (result) {
+                        if (result != '"error"') {
+                            var adi = String(result).replace(/\"/g, "").split("|")[0];
+                            var type = String(result).replace(/\"/g, "").split("|")[1];
 
-                } else {
+                            var range = window.getSelection().getRangeAt(0);
+                            var newNode;
+                            if (range.commonAncestorContainer.parentNode != "img") {
+                                newNode = document.createElement('img');
+                                newNode.setAttribute('src', '/Upload/Sayfa/' + adi);
+                            }
+                            range.surroundContents(newNode);
+                        } else {
 
-                }
-            }
-        });
-
-        $("#btnVideoUpload").ajaxUpload({
-            url: "/home/SayfaFileUpload",
-            name: "file",
-            onSubmit: function () {
-
-            },
-            onComplete: function (result) {
-                if (result != '"error"') {
-                    var adi = String(result).replace(/\"/g, "").split("|")[0];
-                    var type = String(result).replace(/\"/g, "").split("|")[1];
-
-                    var range = window.getSelection().getRangeAt(0);
-                    var newNode;
-                    if (range.commonAncestorContainer.parentNode != "video") {
-                        newNode = document.createElement('video');
-                        newNode.setAttribute('width', '100%');
-                        newNode.setAttribute('height', '240');
-                        newNode.setAttribute('src', '/Upload/Sayfa/' + adi);
-                        newNode.innerText = 'İnternet tarayıcınız HTML5 desteklememektedir.';
+                        }
                     }
-                    range.surroundContents(newNode);
+                });
+                $("#btnVideoUpload" + i + "").ajaxUpload({
+                    url: "/home/SayfaFileUpload",
+                    name: "file",
+                    onSubmit: function () {
 
-                } else {
+                    },
+                    onComplete: function (result) {
+                        if (result != '"error"') {
+                            var adi = String(result).replace(/\"/g, "").split("|")[0];
+                            var type = String(result).replace(/\"/g, "").split("|")[1];
 
-                }
-            }
-        });
+                            var range = window.getSelection().getRangeAt(0);
+                            var newNode;
+                            if (range.commonAncestorContainer.parentNode != "video") {
+                                newNode = document.createElement('video');
+                                newNode.setAttribute('width', '100%');
+                                newNode.setAttribute('height', '240');
+                                newNode.setAttribute('src', '/Upload/Sayfa/' + adi);
+                                newNode.innerText = 'İnternet tarayıcınız HTML5 desteklememektedir.';
+                            }
+                            range.surroundContents(newNode);
 
-        $("#btnFileUpload").ajaxUpload({
-            url: "/home/SayfaFileUpload",
-            name: "file",
-            onSubmit: function () {
+                        } else {
 
-            },
-            onComplete: function (result) {
-                if (result != '"error"') {
-                    var adi = String(result).replace(/\"/g, "").split("|")[0];
-                    var type = String(result).replace(/\"/g, "").split("|")[1];
-
-                    var range = window.getSelection().getRangeAt(0);
-                    var newNode;
-                    if (range.commonAncestorContainer.parentNode != "a") {
-                        newNode = document.createElement('a');
-                        newNode.setAttribute('href', '/Upload/Sayfa/' + adi);
-                        newNode.innerText = window.getSelection().anchorNode.nodeValue;
+                        }
                     }
-                    range.surroundContents(newNode);
+                });
 
-                } else {
+                $("#btnFileUpload" + i + "").ajaxUpload({
+                    url: "/home/SayfaFileUpload",
+                    name: "file",
+                    onSubmit: function () {
 
+                    },
+                    onComplete: function (result) {
+                        if (result != '"error"') {
+                            var adi = String(result).replace(/\"/g, "").split("|")[0];
+                            var type = String(result).replace(/\"/g, "").split("|")[1];
+
+                            var range = window.getSelection().getRangeAt(0);
+                            var newNode;
+                            if (range.commonAncestorContainer.parentNode != "a") {
+                                newNode = document.createElement('a');
+                                newNode.setAttribute('href', '/Upload/Sayfa/' + adi);
+                                newNode.innerText = window.getSelection().anchorNode.nodeValue;
+                            }
+                            range.surroundContents(newNode);
+
+                        } else {
+
+                        }
+                    }
+                });
+                $("[data-cedit='btnLink" + i + "']").click(function (e) {
+                    $(this).next().next().toggle();
+                });
+                $("[data-cedit='link" + i + "']").click(function (e) {
+                    document.execCommand('createLink', false, $("#txtLink" + i + "").val());
+                    $(this).parent().parent().parent().toggle();
+                });
+            });
+
+            $("[data-cedit='font-family']").click(function () {
+                document.execCommand('fontName', false, $(this).attr('data-font-family'));
+            });
+            $("[data-cedit='bold']").click(function () {
+                document.execCommand('bold', false, null);
+            });
+            $("[data-cedit='italic']").click(function () {
+                document.execCommand('italic', false, null);
+            });
+            $("[data-cedit='list']").click(function () {
+                document.execCommand('insertOrderedList', false, null);
+            });
+            $("[data-cedit='left']").click(function (e) {
+                document.execCommand('justifyLeft', false, null);
+            });
+            $("[data-cedit='center']").click(function (e) {
+                document.execCommand('justifyCenter', false, null);
+            });
+            $("[data-cedit='right']").click(function (e) {
+                document.execCommand('justifyRight', false, null);
+            });
+
+            $("[data-cedit='blockquote']").click(function (e) {
+                var range = window.getSelection().getRangeAt(0);
+                var newNode;
+
+                newNode = document.createElement('blockquote');
+                range.surroundContents(newNode);
+            });
+            $("[data-cedit='cite']").click(function (e) {
+                var range = window.getSelection().getRangeAt(0);
+                var newNode;
+                if (range.commonAncestorContainer.parentNode != "cite") {
+                    newNode = document.createElement('cite');
                 }
-            }
-        });
+                range.surroundContents(newNode);
+            });
+        }
         var gzip = function (t) {
             var text = t;
             for (var i = 0; i < 5; i++) {
@@ -326,6 +319,13 @@
             text = String(text).replace(/\};/g, "};\n");
             return text;
         };
+        var htmlEditor = function (id, value) {
+            var sourceID = $(id).attr('data-editor-id');
+            $("[data-editor-id='" + sourceID + "']").val(gzip(value))
+            $("[data-editor-id='" + String(sourceID).replace('s', 'e') + "']").html(gzip(value));
+        };
+        editor();
+        $('[title]').tooltip();
     </script>
 </body>
 </html>
