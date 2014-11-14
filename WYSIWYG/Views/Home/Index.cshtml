@@ -44,6 +44,9 @@
                 blockquote cite:before {
                     content: "\2014 \2009";
                 }
+        .row {
+            margin-bottom:2px;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +86,46 @@
     <div class="container">
         <textarea id="editableSource" data-editor="true" rows="15" class="form-control" style="display: none;"></textarea>
         <textarea id="editableSource1" data-editor="true" rows="15" class="form-control" style="display: none;"></textarea>
+
+        <div id="imageForm" class="panel panel-info" style="min-width:250px; max-width:300px; padding:2px;">
+            <div class="panel-body">
+                <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="Width" /><span class="input-group-addon">px</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="Height" /><span class="input-group-addon">px</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="Alt" /><span class="input-group-addon">Alt</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-align-left"></span></button>
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-align-right"></span></button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            <div class="panel-footer">
+                <div class="btn-group btn-group-sm">
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+            </div>
+        </div>
+
     </div>
     <script>
         var editor = function () {
@@ -135,6 +178,8 @@
                 tool += '</div>';
                 tool += '</div>';
                 tool += '<div contenteditable="true" data-editor-id="e' + i + '" style="display: block;border: solid 1px #e0e0e0;border-radius: 4px;min-height: 200px;padding:10px;"></div>';
+
+                tool += '';
 
                 $(this).before(tool);
                 $(this).attr({ 'data-editor-id': 's' + i });
