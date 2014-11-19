@@ -24,9 +24,9 @@
         tool += '<button class="btn btn-default" title="Right" data-cedit="right"><span class="glyphicon glyphicon-align-right"></span></button>';
         tool += '</div>';
         tool += '<div class="btn-group btn-group-sm">';
-        tool += '<button id="btnImageUpload' + i + '" class="btn btn-default" title="Image Upload"><span class="glyphicon glyphicon-picture"></span></button>';
-        tool += '<button id="btnVideoUpload' + i + '" class="btn btn-default" title="Video Upload"><span class="glyphicon glyphicon-facetime-video"></span></button>';
-        tool += '<button id="btnFileUpload' + i + '" class="btn btn-default" title="File Upload"><span class="glyphicon glyphicon-paperclip"></span></button>';
+        tool += '<a id="btnImageUpload' + i + '" class="btn btn-default" title="Image Upload"><span class="glyphicon glyphicon-picture"></span></a>';
+        tool += '<a id="btnVideoUpload' + i + '" class="btn btn-default" title="Video Upload"><span class="glyphicon glyphicon-facetime-video"></span></a>';
+        tool += '<a id="btnFileUpload' + i + '" class="btn btn-default" title="File Upload"><span class="glyphicon glyphicon-paperclip"></span></a>';
         tool += '</div>';
         tool += '<div class="btn-group btn-group-sm">';
         tool += '<button class="btn btn-default dropdown-toggle" title="Link" data-cedit="btnLink' + i + '"><span class="glyphicon glyphicon-link"></span></button>';
@@ -53,8 +53,10 @@
         $(this).attr({ 'data-editor-id': 's' + i });
         $(this).attr({ 'style': 'display:none;min-height:300px;' });
 
-
+        var slc = null;
         $("[data-editor-id='e" + i + "']").on("keypress focusin focusout change click focus", function () {
+            slc = window.getSelection().getRangeAt(0);
+
             $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
         });
         $("[data-editor-id='s" + i + "']").on("keypress focusin focusout change click focus", function () {
@@ -83,7 +85,7 @@
                     var adi = String(result).replace(/\"/g, "").split("|")[0];
                     var type = String(result).replace(/\"/g, "").split("|")[1];
 
-                    var range = window.getSelection().getRangeAt(0);
+                    var range = slc;
                     var newNode;
                     if (range.commonAncestorContainer.parentNode != "img") {
                         newNode = document.createElement('img');
@@ -106,7 +108,7 @@
                     var adi = String(result).replace(/\"/g, "").split("|")[0];
                     var type = String(result).replace(/\"/g, "").split("|")[1];
 
-                    var range = window.getSelection().getRangeAt(0);
+                    var range = slc;
                     var newNode;
                     if (range.commonAncestorContainer.parentNode != "video") {
                         newNode = document.createElement('video');
@@ -134,7 +136,7 @@
                     var adi = String(result).replace(/\"/g, "").split("|")[0];
                     var type = String(result).replace(/\"/g, "").split("|")[1];
 
-                    var range = window.getSelection().getRangeAt(0);
+                    var range = slc;
                     var newNode;
                     if (range.commonAncestorContainer.parentNode != "a") {
                         newNode = document.createElement('a');
@@ -152,6 +154,9 @@
             $(this).next().next().toggle();
         });
         $("[data-cedit='link" + i + "']").click(function (e) {
+            var ssl = window.getSelection();
+            ssl.removeAllRanges();
+            ssl.addRange(slc);
             document.execCommand('createLink', false, $("#txtLink" + i + "").val());
             $(this).parent().parent().parent().toggle();
         });
