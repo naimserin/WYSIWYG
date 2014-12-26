@@ -17,7 +17,7 @@ namespace WYSIWYG.Controllers
             return View();
         }
 
-        public JsonResult SayfaFileUpload(HttpPostedFileBase file)
+        public JsonResult FileUpload(HttpPostedFileBase file)
         {
             try
             {
