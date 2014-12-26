@@ -47,7 +47,107 @@
         tool += '<button class="btn btn-default" title="Source" data-cedit="source' + i + '"><span class="glyphicon glyphicon-edit"></span></button>';
         tool += '</div>';
         tool += '</div>';
-        tool += '<div contenteditable="true" data-editor-id="e' + i + '" style="display: block;border: solid 1px #e0e0e0;border-radius: 4px;min-height: 200px;padding:10px;"></div>';
+        tool += '<div contenteditable="true" data-editor-id="e' + i + '" style="display: inline-block;border: solid 1px #e0e0e0;border-radius: 4px;min-height: 200px;padding:10px;width: 100%;"></div>';
+
+        /////////URLFORM
+        tool += '<div id="urlForm' + i + '" class="panel panel-info" style="min-width:250px; max-width:300px; padding:2px;display:none;position:absolute;left:0px;top:0px;opacity:1;box-shadow:0px 0px 5px #ccc;z-index:999;">';
+        tool += '<div class="panel-body">';
+        tool += '<div class="row">';
+        tool += '<div class="col-md-12">';
+        tool += '<div class="input-group input-group-sm">';
+        tool += '<input type="text" id="url' + i + '" class="form-control" placeholder="http://" title="URL" /><span class="input-group-addon">URL</span>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '<div class="row">';
+        tool += '<div class="col-md-6" title="Target">';
+        tool += '<select id="target' + i + '" class="form-control">';
+        tool += '<option value="">...</option>';
+        tool += '<option value="_blank">_blank</option>';
+        tool += '<option value="_parent">_parent</option>';
+        tool += '<option value="_self">_self</option>';
+        tool += '<option value="_top">_top</option>';
+        tool += '</select>';
+        tool += '</div>';
+        tool += '<div class="col-md-6" title="Rel">';
+        tool += '<select id="rel' + i + '" class="form-control">';
+        tool += '<option value="">...</option>';
+        tool += '<option value="alternate">alternate</option>';
+        tool += '<option value="archives">archives</option>';
+        tool += '<option value="author">author</option>';
+        tool += '<option value="bookmark">bookmark</option>';
+        tool += '<option value="canonical">canonical</option>';
+        tool += '<option value="external">external</option>';
+        tool += '<option value="first">first</option>';
+        tool += '<option value="help">help</option>';
+        tool += '<option value="index">index</option>';
+        tool += '<option value="last">last</option>';
+        tool += '<option value="license">license</option>';
+        tool += '<option value="next">next</option>';
+        tool += '<option value="nofollow">nofollow</option>';
+        tool += '<option value="noreferrer">noreferrer</option>';
+        tool += '<option value="prefetch">prefetch</option>';
+        tool += '<option value="prev">prev</option>';
+        tool += '<option value="search">search</option>';
+        tool += '<option value="sidebar">sidebar</option>';
+        tool += '<option value="tag">tag</option>';
+        tool += '<option value="up">up</option>';
+        tool += '</select>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '</div>';
+        /////////URLFORM
+        /////////IMAGEOFORM
+        tool += '<div id="imageForm' + i + '" class="panel panel-info" style="min-width:250px; max-width:300px; padding:2px;display:none;position:absolute;left:0px;top:0px;opacity:1;box-shadow:0px 0px 5px #ccc;z-index:999;">';
+        tool += '<div class="panel-body">';
+        tool += '<div class="row">';
+        tool += '<div class="col-sm-6">';
+        tool += '<div class="input-group input-group-sm">';
+        tool += '<input type="text" id="width' + i + '" class="form-control" placeholder="Width" title="Width" /><span class="input-group-addon">px</span>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '<div class="col-sm-6">';
+        tool += '<div class="input-group input-group-sm">';
+        tool += '<input type="text" id="height' + i + '" class="form-control" placeholder="Height" title="Height" /><span class="input-group-addon">px</span>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '<div class="row">';
+        tool += '<div class="col-sm-12">';
+        tool += '<div class="input-group input-group-sm">';
+        tool += '<input type="text" id="alt' + i + '" class="form-control" placeholder="Alt" title="Alt" /><span class="input-group-addon">Alt</span>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '<div class="row">';
+        tool += '<div class="col-sm-3">';
+        tool += '<input type="text" id="marginTop' + i + '" class="form-control input-sm" placeholder="Top" title="Margin Top" />';
+        tool += '</div>';
+        tool += '<div class="col-sm-3">';
+        tool += '<input type="text" id="marginRight' + i + '" class="form-control input-sm" placeholder="Right" title="Margin Right" />';
+        tool += '</div>';
+        tool += '<div class="col-sm-3">';
+        tool += '<input type="text" id="marginBottom' + i + '" class="form-control input-sm" placeholder="Bottom" title="Margin Bottom" />';
+        tool += '</div>';
+        tool += '<div class="col-sm-3">';
+        tool += '<input type="text" id="marginLeft' + i + '" class="form-control input-sm" placeholder="Left" title="Margin Left" />';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '<div class="row">';
+        tool += '<div class="col-sm-10">';
+        tool += '<div class="btn-group btn-group-sm">';
+        tool += '<button id="left' + i + '" class="btn btn-default" title="Float Left"><span class="glyphicon glyphicon-align-left"></span></button>';
+        tool += '<button id="right' + i + '" class="btn btn-default" title="Float Right"><span class="glyphicon glyphicon-align-right"></span></button>';
+        tool += '<button id="floatRemove' + i + '" class="btn btn-default" title="Float Remove"><span class="glyphicon glyphicon-remove"></span></button>';
+        tool += '</div>';
+        tool += '</div>';
+        tool += '</div>';
+        //////////IMAGEFORM
+        tool += '</div>';
+        tool += '</div>';
+
+
 
         $(this).before(tool);
         $(this).attr({ 'data-editor-id': 's' + i });
@@ -74,8 +174,144 @@
                 $("[data-editor-id='s" + i + "']").hide();
             }
         });
+        var img = null;
+        $("body").on("click", "[data-editor-id='e" + i + "'] img", function () {
+            img = $(this);
+            var imgWidth = img.width();
+            var imgHeight = img.height();
+            var imgAlt = img.attr("alt");
+            var imgMarginLeft = img.css("margin-left");
+            var imgMarginRight = img.css("margin-right");
+            var imgMarginTop = img.css("margin-top");
+            var imgMarginBottom = img.css("margin-bottom");
+
+            $("#width" + i + "").val(imgWidth);
+            $("#height" + i + "").val(imgHeight);
+            $("#alt" + i + "").val(imgAlt);
+            $("#marginLeft" + i + "").val(imgMarginLeft);
+            $("#marginRight" + i + "").val(imgMarginRight);
+            $("#marginTop" + i + "").val(imgMarginTop);
+            $("#marginBottom" + i + "").val(imgMarginBottom);
+
+
+            $("#width" + i + "").on("keyup", function () {
+                if ($(this).val().length != 0) {
+                    img.css({ "width": $(this).val() + "px" });
+                } else {
+                    img.css({ "width": "" });
+                }
+            });
+            $("#height" + i + "").on("keyup", function () {
+                if ($(this).val().length != 0) {
+                    img.css({ "height": $(this).val() + "px" });
+                } else {
+                    img.css({ "height": "" });
+                }
+            });
+            $("#alt" + i + "").on("keyup", function () {
+                img.attr({ "alt": $(this).val() });
+            });
+
+            $("#left" + i + "").on("click", function () {
+                img.css({ "float": "left" });
+                $.formPosition(img);
+            });
+            $("#right" + i + "").on("click", function () {
+                img.css({ "float": "right" });
+                $.formPosition(img);
+            });
+            $("#floatRemove" + i + "").on("click", function () {
+                img.css({ "float": "" });
+                $.formPosition(img);
+            });
+
+            $("#marginTop" + i + "").on("keyup", function () {
+                if ($(this).val().length != 0) {
+                    img.css({ "margin-top": $(this).val() + "px" });
+                } else {
+                    img.css({ "margin-top": "" });
+                }
+            });
+            $("#marginRight" + i + "").on("keyup", function () {
+                if ($(this).val().length != 0) {
+                    img.css({ "margin-right": $(this).val() + "px" });
+                } else {
+                    img.css({ "margin-right": "" });
+                }
+            });
+            $("#marginBottom" + i + "").on("keyup", function () {
+                if ($(this).val().length != 0) {
+                    img.css({ "margin-bottom": $(this).val() + "px" });
+                } else {
+                    img.css({ "margin-bottom": "" });
+                }
+            });
+            $("#marginLeft" + i + "").on("keyup", function () {
+                if ($(this).val().length != 0) {
+                    img.css({ "margin-left": $(this).val() + "px" });
+                } else {
+                    img.css({ "margin-left": "" });
+                }
+            });
+
+            $("#imageForm" + i + "").toggle();
+
+            $.formPosition = function (img) {
+                if (img.position().left > window.innerWidth / 3) {
+                    $("#imageForm" + i + "").css({ "left": (img.position().left + ((imgWidth / 2) - (294))), "top": (img.position().top - 170) });
+                } else {
+                    $("#imageForm" + i + "").css({ "left": (img.position().left + ((imgWidth / 2))), "top": (img.position().top - 170) });
+                }
+
+            };
+            $.formPosition(img);
+        });
+        var aE = null;
+        $("body").on("click", "[data-editor-id='e" + i + "'] a", function () {
+            aE = $(this);
+
+            var aHref = aE.attr('href');
+            var aTarget = aE.attr('target');
+            var aRel = aE.attr('rel');
+
+            $("#url" + i + "").val(aHref);
+            $("#target" + i + "").val(aTarget);
+            $("#rel" + i + "").val(aRel);
+
+            $("#url" + i + "").on("keyup", function () {
+                if ($(this).val().length != 0) {
+                    aE.attr({ 'href': $(this).val() });
+                } else {
+                    aE.removeAttr('href');
+                }
+            });
+
+            $("#target" + i + "").on("change", function () {
+                if ($(this).val().length != 0) {
+                    aE.attr({ 'target': $(this).val() });
+                } else {
+                    aE.removeAttr('target');
+                }
+            });
+
+            $("#rel" + i + "").on("change", function () {
+                if ($(this).val().length != 0) {
+                    aE.attr({ 'rel': $(this).val() });
+                } else {
+                    aE.removeAttr('rel');
+                }
+            });
+            $("#urlForm" + i + "").toggle();
+            if (aE.position().left > window.innerWidth / 3) {
+                $("#urlForm" + i + "").css({ "left": (aE.position().left + ((aE.width() / 2) - (300))), "top": (aE.position().top + aE.height()) });
+            } else {
+                $("#urlForm" + i + "").css({ "left": (aE.position().left + ((aE.width() / 2))), "top": (aE.position().top + aE.height()) });
+            }
+        });
+
+
         $("#btnImageUpload" + i + "").ajaxUpload({
-            url: "/backoffice/SayfaFileUpload",
+            url: "/office/FileUpload",
             name: "file",
             onSubmit: function () {
 
@@ -98,7 +334,7 @@
             }
         });
         $("#btnVideoUpload" + i + "").ajaxUpload({
-            url: "/backoffice/SayfaFileUpload",
+            url: "/office/FileUpload",
             name: "file",
             onSubmit: function () {
 
@@ -126,7 +362,7 @@
         });
 
         $("#btnFileUpload" + i + "").ajaxUpload({
-            url: "/backoffice/SayfaFileUpload",
+            url: "/office/FileUpload",
             name: "file",
             onSubmit: function () {
 
