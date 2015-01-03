@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\zozro\Desktop\ide\v1</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Microsoft.CSharp.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>11/14/2014 23:28:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>11/14/2014 23:28:52</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>11/14/2014 23:28:54</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.DataAnnotations.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Configuration.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Data.DataSetExtensions.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Data.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Drawing.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.EnterpriseServices.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>11/14/2014 23:28:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>11/14/2014 23:28:54</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>11/14/2014 23:28:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Abstractions.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.ApplicationServices.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.DynamicData.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Entity.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Extensions.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>11/14/2014 23:28:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>11/14/2014 23:28:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>11/14/2014 23:28:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>11/14/2014 23:28:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>11/14/2014 23:28:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Routing.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Services.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>11/14/2014 23:28:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>11/14/2014 23:28:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>11/14/2014 23:28:52</publishTime>
+    </File>
+    <File Include="bin/WYSIWYG.dll">
+      <publishTime>01/04/2015 01:08:48</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>11/14/2014 23:28:56</publishTime>
+    </File>
+    <File Include="Src/css/bootstrap-colorpicker.css">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/css/bootstrap-colorpicker.min.css">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/css/bootstrap-theme.css">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/css/bootstrap-theme.css.map">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/css/bootstrap-theme.min.css">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/css/bootstrap.css">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/css/bootstrap.css.map">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/css/bootstrap.min.css">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/img/bootstrap-colorpicker/alpha-horizontal.png">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/img/bootstrap-colorpicker/alpha.png">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/img/bootstrap-colorpicker/hue-horizontal.png">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/img/bootstrap-colorpicker/hue.png">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/img/bootstrap-colorpicker/saturation.png">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/js/ajaxupload.js">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/js/bootstrap-colorpicker.js">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/js/bootstrap-colorpicker.min.js">
+      <publishTime>01/03/2015 23:45:44</publishTime>
+    </File>
+    <File Include="Src/js/bootstrap.js">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/js/bootstrap.min.js">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/js/jquery-1.11.1.min.js">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/js/npm.js">
+      <publishTime>11/14/2014 23:25:24</publishTime>
+    </File>
+    <File Include="Src/js/wysiwyg.js">
+      <publishTime>01/04/2015 01:05:54</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>01/04/2015 01:50:26</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>11/14/2014 23:25:26</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/04/2015 00:54:02</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
