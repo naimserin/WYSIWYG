@@ -95,7 +95,6 @@ D:\GitHub Naim\WYSIWYG\WYSIWYG\bin\System.Web.Services.dll
 D:\GitHub Naim\WYSIWYG\WYSIWYG\bin\System.Net.Http.Formatting.xml
 D:\GitHub Naim\WYSIWYG\WYSIWYG\bin\System.Web.Http.xml
 D:\GitHub Naim\WYSIWYG\WYSIWYG\bin\System.Web.Http.WebHost.xml
-D:\PROJECTS\NAIM\GitHub Naim\WYSIWYG\WYSIWYG\bin\WYSIWYG.dll.config
 D:\PROJECTS\NAIM\GitHub Naim\WYSIWYG\WYSIWYG\bin\Microsoft.CSharp.dll
 D:\PROJECTS\NAIM\GitHub Naim\WYSIWYG\WYSIWYG\bin\System.ComponentModel.DataAnnotations.dll
 D:\PROJECTS\NAIM\GitHub Naim\WYSIWYG\WYSIWYG\bin\System.Configuration.dll

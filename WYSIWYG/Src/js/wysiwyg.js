@@ -153,7 +153,6 @@
             tool += '</div>';
 
 
-
             $(this).before(tool);
             $(this).attr({ 'data-editor-id': 's' + i });
             $(this).attr({ 'style': 'display:none;min-height:300px;' });
@@ -161,13 +160,21 @@
             var slc = null;
 
             $("body").on("focusin focusout click focus", function () {
-                $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
+                if ($("[data-editor-id='s" + i + "']").css('display') == 'none') {
+                    $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/'/g, '’').replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
+                    //$("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html())));
+                }
             });
 
             $("[data-editor-id='e" + i + "']").on("keypress focusin focusout change click focus", function () {
                 slc = window.getSelection().getRangeAt(0);
-                $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
+                //$("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html())));
+
+                //text = String(text).replace(/'/g, '’');
+
+                $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/'/g, '’').replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
             });
+
             $("[data-editor-id='e" + i + "']").on("keypress focusin change click focus", function () {
                 if ($("#imageForm" + i + "").css('display') == "block") {
                     $("#imageForm" + i + "").hide();
@@ -182,6 +189,7 @@
 
             $("[data-cedit='source" + i + "']").click(function (e) {
                 if ($("[data-editor-id='s" + i + "']").is(':visible') == false) {
+                    //$("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html())));
                     $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
                     $("[data-editor-id='s" + i + "']").show();
                     $("[data-editor-id='e" + i + "']").hide();
@@ -327,7 +335,7 @@
             });
 
             $("#btnImageUpload" + i + "").ajaxUpload({
-                url: "/home/FileUpload",
+                url: "/office/FileUpload",
                 name: "file",
                 onSubmit: function () {
 
@@ -350,7 +358,7 @@
                 }
             });
             $("#btnVideoUpload" + i + "").ajaxUpload({
-                url: "/home/FileUpload",
+                url: "/office/FileUpload",
                 name: "file",
                 onSubmit: function () {
 
@@ -378,7 +386,7 @@
             });
 
             $("#btnFileUpload" + i + "").ajaxUpload({
-                url: "/home/FileUpload",
+                url: "/office/FileUpload",
                 name: "file",
                 onSubmit: function () {
 
@@ -501,6 +509,6 @@ var ungzip = function (t) {
 };
 var htmlEditor = function (id, value) {
     var sourceID = $(id).attr('data-editor-id');
-    $("[data-editor-id='" + sourceID + "']").val(gzip(value))
+    $("[data-editor-id='" + sourceID + "']").val(gzip(value));
     $("[data-editor-id='" + String(sourceID).replace('s', 'e') + "']").html(gzip(value));
 };
