@@ -200,16 +200,13 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\ide.pubxml" />
+    <Content Include="Src\css\bootstrap-theme.css.map" />
+    <Content Include="Src\css\bootstrap.css.map" />
     <Content Include="Src\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Src\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Src\fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Src\css\bootstrap-theme.css.map" />
-    <Content Include="Src\css\bootstrap.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\PublishProfiles\ide.pubxml" />
+    <Content Include="Src\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

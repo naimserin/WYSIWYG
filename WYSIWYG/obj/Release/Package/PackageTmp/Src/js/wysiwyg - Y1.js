@@ -1,5 +1,5 @@
 ﻿var editor = function () {
-    $("[data-editor='true']").each(function(i, item) {
+    $("[data-editor='true']").each(function (i, item) {
         if ($("[data-editor-id='e" + i + "']").html() == undefined) {
             var tool = '<div style="margin-bottom: 5px;" class="toolbox">';
             tool += '<div class="btn-group btn-group-sm">';
@@ -12,22 +12,6 @@
             tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="font-family: serif;" data-font-family="serif" data-cedit="font-family">Serif</a></li>';
             tool += '</ul>';
             tool += '</div>';
-
-
-            tool += '<div class="btn-group btn-group-sm">';
-            tool += '<button class="btn btn-default dropdown-toggle" title="Font Size" data-toggle="dropdown"><span class="glyphicon glyphicon-text-size"></span>&nbsp;<span class="caret"></span></button>';
-            tool += '<ul class="dropdown-menu" role="menu" aria-labelledby="font-size">';
-            tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-cedit="font-size" data-font-size="1"><font size="1">Size</font></a></li>';
-            tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-cedit="font-size" data-font-size="2"><font size="2">Size</font></a></li>';
-            tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-cedit="font-size" data-font-size="3"><font size="3">Size</font></a></li>';
-            tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-cedit="font-size" data-font-size="4"><font size="4">Size</font></a></li>';
-            tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-cedit="font-size" data-font-size="5"><font size="5">Size</font></a></li>';
-            tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#"  data-cedit="font-size" data-font-size="6"><font size="6">Size</font></a></li>';
-            tool += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#"  data-cedit="font-size" data-font-size="7"><font size="7">Size</font></a></li>';
-            tool += '</ul>';
-            tool += '</div>';
-
-
             tool += '<div class="btn-group btn-group-sm">';
             tool += '<button class="btn btn-default" title="Bold" data-cedit="bold"><span class="glyphicon glyphicon-bold"></span></button>';
             tool += '<button class="btn btn-default" title="Italic" data-cedit="italic"><span class="glyphicon glyphicon-italic"></span></button>';
@@ -175,9 +159,9 @@
 
             var slc = null;
 
-            $("body").on("focusin focusout click focus", function() {
+            $("body").on("focusin focusout click focus", function () {
                 if ($("[data-editor-id='s" + i + "']").css('display') == 'none') {
-                    $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
+                    $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/'/g, '’').replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
                     //$("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html())));
                 }
             });
@@ -186,14 +170,24 @@
                 slc = window.getSelection().getRangeAt(0);
                 //$("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html())));
 
-                $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
+                //text = String(text).replace(/'/g, '’');
+
+                $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/'/g, '’').replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
             });
 
-            $("[data-editor-id='s" + i + "']").on("keypress focusin focusout change click focus", function() {
+            $("[data-editor-id='e" + i + "']").on("keypress focusin change click focus", function () {
+                if ($("#imageForm" + i + "").css('display') == "block") {
+                    $("#imageForm" + i + "").hide();
+                }
+                if ($("#urlForm" + i + "").css('display') == "block") {
+                    $("#urlForm" + i + "").hide();
+                }
+            });
+            $("[data-editor-id='s" + i + "']").on("keypress focusin focusout change click focus", function () {
                 $("[data-editor-id='e" + i + "']").html(gzip($("[data-editor-id='s" + i + "']").val()));
             });
 
-            $("[data-cedit='source" + i + "']").click(function(e) {
+            $("[data-cedit='source" + i + "']").click(function (e) {
                 if ($("[data-editor-id='s" + i + "']").is(':visible') == false) {
                     //$("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html())));
                     $("[data-editor-id='s" + i + "']").val(ungzip(String($("[data-editor-id='e" + i + "']").html()).replace(/\r/g, '<br>').replace(/<div><br><\/div>/g, '<br>').replace(/line-height: [0-9].[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9];/, '').replace(/ style=""/gi, '')));
@@ -206,7 +200,7 @@
                 }
             });
             var img = null;
-            $("[data-editor-id='e" + i + "']").on("click","img", function () {
+            $("body").on("click", "[data-editor-id='e" + i + "'] img", function () {
                 img = $(this);
                 var imgWidth = img.width();
                 var imgHeight = img.height();
@@ -224,59 +218,60 @@
                 $("#marginTop" + i + "").val(imgMarginTop);
                 $("#marginBottom" + i + "").val(imgMarginBottom);
 
-                $("#width" + i + "").on("keyup", function() {
+
+                $("#width" + i + "").on("keyup", function () {
                     if ($(this).val().length != 0) {
                         img.css({ "width": $(this).val() + "px" });
                     } else {
                         img.css({ "width": "" });
                     }
                 });
-                $("#height" + i + "").on("keyup", function() {
+                $("#height" + i + "").on("keyup", function () {
                     if ($(this).val().length != 0) {
                         img.css({ "height": $(this).val() + "px" });
                     } else {
                         img.css({ "height": "" });
                     }
                 });
-                $("#alt" + i + "").on("keyup", function() {
+                $("#alt" + i + "").on("keyup", function () {
                     img.attr({ "alt": $(this).val() });
                 });
 
-                $("#left" + i + "").on("click", function() {
+                $("#left" + i + "").on("click", function () {
                     img.css({ "float": "left" });
                     $.formPosition(img);
                 });
-                $("#right" + i + "").on("click", function() {
+                $("#right" + i + "").on("click", function () {
                     img.css({ "float": "right" });
                     $.formPosition(img);
                 });
-                $("#floatRemove" + i + "").on("click", function() {
+                $("#floatRemove" + i + "").on("click", function () {
                     img.css({ "float": "" });
                     $.formPosition(img);
                 });
 
-                $("#marginTop" + i + "").on("keyup", function() {
+                $("#marginTop" + i + "").on("keyup", function () {
                     if ($(this).val().length != 0) {
                         img.css({ "margin-top": $(this).val() + "px" });
                     } else {
                         img.css({ "margin-top": "" });
                     }
                 });
-                $("#marginRight" + i + "").on("keyup", function() {
+                $("#marginRight" + i + "").on("keyup", function () {
                     if ($(this).val().length != 0) {
                         img.css({ "margin-right": $(this).val() + "px" });
                     } else {
                         img.css({ "margin-right": "" });
                     }
                 });
-                $("#marginBottom" + i + "").on("keyup", function() {
+                $("#marginBottom" + i + "").on("keyup", function () {
                     if ($(this).val().length != 0) {
                         img.css({ "margin-bottom": $(this).val() + "px" });
                     } else {
                         img.css({ "margin-bottom": "" });
                     }
                 });
-                $("#marginLeft" + i + "").on("keyup", function() {
+                $("#marginLeft" + i + "").on("keyup", function () {
                     if ($(this).val().length != 0) {
                         img.css({ "margin-left": $(this).val() + "px" });
                     } else {
@@ -286,7 +281,7 @@
 
                 $("#imageForm" + i + "").toggle();
 
-                $.formPosition = function(img) {
+                $.formPosition = function (img) {
                     if (img.position().left > window.innerWidth / 3) {
                         $("#imageForm" + i + "").css({ "left": (img.position().left + ((imgWidth / 2) - (294))), "top": (img.position().top - 170) });
                     } else {
@@ -297,7 +292,7 @@
                 $.formPosition(img);
             });
             var aE = null;
-            $("[data-editor-id='e" + i + "']").on("click", "a", function () {
+            $("body").on("click", "[data-editor-id='e" + i + "'] a", function () {
                 aE = $(this);
 
                 var aHref = aE.attr('href');
@@ -308,7 +303,7 @@
                 $("#target" + i + "").val(aTarget);
                 $("#rel" + i + "").val(aRel);
 
-                $("#url" + i + "").on("keyup", function() {
+                $("#url" + i + "").on("keyup", function () {
                     if ($(this).val().length != 0) {
                         aE.attr({ 'href': $(this).val() });
                     } else {
@@ -316,7 +311,7 @@
                     }
                 });
 
-                $("#target" + i + "").on("change", function() {
+                $("#target" + i + "").on("change", function () {
                     if ($(this).val().length != 0) {
                         aE.attr({ 'target': $(this).val() });
                     } else {
@@ -324,7 +319,7 @@
                     }
                 });
 
-                $("#rel" + i + "").on("change", function() {
+                $("#rel" + i + "").on("change", function () {
                     if ($(this).val().length != 0) {
                         aE.attr({ 'rel': $(this).val() });
                     } else {
@@ -340,12 +335,12 @@
             });
 
             $("#btnImageUpload" + i + "").ajaxUpload({
-                url: "/Home/FileUpload",
+                url: "/office/FileUpload",
                 name: "file",
-                onSubmit: function() {
+                onSubmit: function () {
 
                 },
-                onComplete: function(result) {
+                onComplete: function (result) {
                     if (result != '"error"') {
                         var adi = String(result).replace(/\"/g, "").split("|")[0];
                         var type = String(result).replace(/\"/g, "").split("|")[1];
@@ -363,12 +358,12 @@
                 }
             });
             $("#btnVideoUpload" + i + "").ajaxUpload({
-                url: "/Home/FileUpload",
+                url: "/office/FileUpload",
                 name: "file",
-                onSubmit: function() {
+                onSubmit: function () {
 
                 },
-                onComplete: function(result) {
+                onComplete: function (result) {
                     if (result != '"error"') {
                         var adi = String(result).replace(/\"/g, "").split("|")[0];
                         var type = String(result).replace(/\"/g, "").split("|")[1];
@@ -391,12 +386,12 @@
             });
 
             $("#btnFileUpload" + i + "").ajaxUpload({
-                url: "/Home/FileUpload",
+                url: "/office/FileUpload",
                 name: "file",
-                onSubmit: function() {
+                onSubmit: function () {
 
                 },
-                onComplete: function(result) {
+                onComplete: function (result) {
                     if (result != '"error"') {
                         var adi = String(result).replace(/\"/g, "").split("|")[0];
                         var type = String(result).replace(/\"/g, "").split("|")[1];
@@ -415,10 +410,10 @@
                     }
                 }
             });
-            $("[data-cedit='btnLink" + i + "']").click(function(e) {
+            $("[data-cedit='btnLink" + i + "']").click(function (e) {
                 $(this).next().next().toggle();
             });
-            $("[data-cedit='link" + i + "']").click(function(e) {
+            $("[data-cedit='link" + i + "']").click(function (e) {
                 var ssl = window.getSelection();
                 ssl.removeAllRanges();
                 ssl.addRange(slc);
@@ -426,32 +421,17 @@
                 $(this).parent().parent().parent().toggle();
             });
 
-            $("[data-cedit='color" + i + "']").colorpicker().on('changeColor', function(ev) {
+            $("[data-cedit='color" + i + "']").colorpicker().on('changeColor', function (ev) {
                 document.execCommand('foreColor', false, ev.color.toHex());
             });
-            $("[data-cedit='backcolor" + i + "']").colorpicker().on('changeColor', function(ev) {
+            $("[data-cedit='backcolor" + i + "']").colorpicker().on('changeColor', function (ev) {
                 document.execCommand('hilitecolor', false, ev.color.toHex());
             });
         }
     });
 
-    //$("body").on("click", "[data-editor-id]", function () {
-    //    $("[data-editor='true']").each(function (i, item) {
-    //        if ($("#imageForm" + i + "").css('display') == "block") {
-    //            $("#imageForm" + i + "").hide();
-    //        }
-    //        if ($("#urlForm" + i + "").css('display') == "block") {
-    //            $("#urlForm" + i + "").hide();
-    //        }
-    //    });
-    //});
-
-
     $("[data-cedit='font-family']").click(function () {
         document.execCommand('fontName', false, $(this).attr('data-font-family'));
-    });
-    $("[data-cedit='font-size']").click(function () {
-        document.execCommand('fontSize', false, $(this).attr('data-font-size'));
     });
     $("[data-cedit='bold']").click(function () {
         document.execCommand('bold', false, null);
@@ -532,11 +512,3 @@ var htmlEditor = function (id, value) {
     $("[data-editor-id='" + sourceID + "']").val(gzip(value));
     $("[data-editor-id='" + String(sourceID).replace('s', 'e') + "']").html(gzip(value));
 };
-
-function htmlEscape(str) {
-    return String(str)
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '’')
-        .replace(/‘/g, '’')
-        .replace(/’/g, '’');
-}
