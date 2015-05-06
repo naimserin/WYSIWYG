@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WYSIWYG Bootstrap Html Editor</title>
+
+    <link href="Src/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Src/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+    <script src="Src/js/jquery-1.11.1.min.js"></script>
+    <script src="Src/js/bootstrap.min.js"></script>
+    <script src="Src/js/bootstrap-colorpicker.min.js"></script>
+    <script src="Src/js/ajaxupload.js"></script>
+    <script src="Src/js/wysiwyg.js"></script>
+    <style>
+        blockquote {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            font-style: italic;
+            width: 100%;
+            margin: 0.25em 0;
+            padding: 0.25em 40px;
+            line-height: 1.45;
+            position: relative;
+            color: #383838;
+        }
+
+            blockquote:before {
+                display: block;
+                content: "\201C";
+                font-size: 80px;
+                position: absolute;
+                left: -20px;
+                top: -20px;
+                color: #7a7a7a;
+            }
+
+            blockquote cite {
+                color: #999999;
+                font-size: 14px;
+                display: block;
+                margin-top: 5px;
+            }
+
+                blockquote cite:before {
+                    content: "\2014 \2009";
+                }
+
+        .row {
+            margin-bottom: 2px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">WYSIWYG</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="https://github.com/naimserin/WYSIWYG" target="_blank">Download</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container">
+        <textarea id="editableSource" data-editor="true" rows="15" class="form-control" style="display: none;"></textarea>
+        <textarea id="editableSource1" data-editor="true" rows="15" class="form-control" style="display: none;"></textarea>
+
+      
+
+        <div class="well">
+            CSS<br />
+            &lt;link href=&quot;~/Src/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; /&gt;<br />
+            &lt;link href=&quot;~/Src/css/bootstrap-colorpicker.min.css&quot; rel=&quot;stylesheet&quot; /&gt;<br />
+            <br />
+            JS<br />
+            &lt;script src=&quot;~/Src/js/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;<br />
+            &lt;script src=&quot;~/Src/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;<br />
+            &lt;script src=&quot;~/Src/js/bootstrap-colorpicker.min.js&quot;&gt;&lt;/script&gt;<br />
+            &lt;script src=&quot;~/Src/js/ajaxupload.js&quot;&gt;&lt;/script&gt;<br />
+            &lt;script src=&quot;~/Src/js/wysiwyg.js&quot;&gt;&lt;/script&gt;<br />
+
+            <h4>Start Function</h4>
+            <pre>&lt;script&gt;editor();&lt;/script&gt;</pre>
+            <h4>Set Value Function</h4><pre>&lt;script&gt;htmlEditor('#editableSource', 'Html String');&lt;/script&gt;</pre>
+        </div>
+        <div class="well">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'idensericom'; // required: replace example with your forum shortname
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function () {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+    </div>
+    <script>
+        editor();
+        htmlEditor('#editableSource', '<b><font color="#30e679">Html String</font></b>');
+        htmlEditor('#editableSource1', '<p><b>Nikola Tesla</b> (<a href="/wiki/Serbian_Cyrillic_language" title="Serbian Cyrillic language" class="mw-redirect">Serbian Cyrillic</a>: <span lang="sr" xml:lang="sr"><span class="Unicode">Никола Тесла</span></span>; 10 July 1856&nbsp;– 7 January 1943) was a <a href="/wiki/Serbian_American" title="Serbian American">Serbian American</a><sup id="cite_ref-2" class="reference"><a href="#cite_note-2"><span>[</span>2<span>]</span></a></sup><sup id="cite_ref-3" class="reference"><a href="#cite_note-3"><span>[</span>3<span>]</span></a></sup><sup id="cite_ref-History-bio_4-0" class="reference"><a href="#cite_note-History-bio-4"><span>[</span>4<span>]</span></a></sup> inventor, <a href="/wiki/Electrical_engineer" title="Electrical engineer" class="mw-redirect">electrical engineer</a>, <a href="/wiki/Mechanical_engineering" title="Mechanical engineering">mechanical engineer</a>, and <a href="/wiki/Futurist" title="Futurist">futurist</a> best known for his contributions to the design of the modern <a href="/wiki/Alternating_current" title="Alternating current">alternating current</a> (AC) <a href="/wiki/Electricity_supply" title="Electricity supply" class="mw-redirect">electricity supply</a> system.<sup id="cite_ref-5" class="reference"><a href="#cite_note-5"><span>[</span>5<span>]</span></a></sup></p><img alt="Tesla circa 1890.jpeg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Tesla_circa_1890.jpeg/220px-Tesla_circa_1890.jpeg" width="220" height="295" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/79/Tesla_circa_1890.jpeg/330px-Tesla_circa_1890.jpeg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/79/Tesla_circa_1890.jpeg/440px-Tesla_circa_1890.jpeg 2x" data-file-width="940" data-file-height="1260" style="float: right; margin-right: 20px; margin-bottom: 20px; margin-left: 20px;"><p>Tesla gained experience in <a href="/wiki/Telephony" title="Telephony">telephony</a> and electrical engineering before immigrating to the <a href="/wiki/United_States" title="United States">United States</a> in 1884 to work for <a href="/wiki/Thomas_Edison" title="Thomas Edison">Thomas Edison</a> in New York City. He soon struck out on</p><p>&nbsp;his own with financial backers, setting up laboratories and companies to develop a range of electrical devices. His <a href="/wiki/Patent" title="Patent">patented</a> AC <a href="/wiki/Induction_motor" title="Induction motor">induction motor</a> and transformer were licensed by <a href="/wiki/George_Westinghouse" title="George Westinghouse">George Westinghouse</a>, who also hired Tesla for a short time as a consultant. His work in the formative years of electric power development was involved in a corporate alternating current/<a href="/wiki/Direct_current" title="Direct current">direct current</a> "<a href="/wiki/War_of_Currents" title="War of Currents">War of Currents</a>" as well as various <a href="/wiki/Patent" title="Patent">patent</a> battles. Tesla went on to pursue his ideas of wireless lighting and electricity distribution in his high-voltage, high-frequency power experiments in New York and Colorado Springs and made early (1893) pronouncements on the possibility of <a href="/wiki/Wireless_communication" title="Wireless communication" class="mw-redirect">wireless communication</a> with his devices. He tried to put these ideas to practical use in his ill-fated attempt at intercontinental wireless transmission, which was his unfinished <a href="/wiki/Wardenclyffe_Tower" title="Wardenclyffe Tower">Wardenclyffe Tower</a> project.<sup id="cite_ref-tsteslatower_6-0" class="reference"><a href="#cite_note-tsteslatower-6"><span>[</span>6<span>]</span></a></sup> In his lab he also conducted a range of experiments with mechanical oscillators/generators, electrical discharge tubes, and early X-ray imaging. He also built a wireless controlled boat, one of the first ever exhibited.</p><p>Tesla was renowned for his achievements and showmanship, eventually earning him a reputation in <a href="/wiki/Popular_culture" title="Popular culture">popular culture</a> as an archetypal "<a href="/wiki/Mad_scientist" title="Mad scientist">mad scientist</a>."<sup id="cite_ref-7" class="reference"><a href="#cite_note-7"><span>[</span>7<span>]</span></a></sup> His patents earned him a considerable amount of money, much of which was used to finance his own projects with varying degrees of success.<sup id="cite_ref-Cheney_8-0" class="reference"><a href="#cite_note-Cheney-8"><span>[</span>8<span>]</span></a></sup><sup class="reference" style="white-space:nowrap;">:121,154</sup> He lived most of his life in a series of New York hotels, through his retirement. He died on 7 January 1943.<sup id="cite_ref-9" class="reference"><a href="#cite_note-9"><span>[</span>9<span>]</span></a></sup> His work fell into relative obscurity after his death, but in 1960 the <a href="/wiki/General_Conference_on_Weights_and_Measures" title="General Conference on Weights and Measures">General Conference on Weights and Measures</a> named the <a href="/wiki/SI_unit" title="SI unit" class="mw-redirect">SI unit</a> of magnetic flux density the <a href="/wiki/Tesla_(unit)" title="Tesla (unit)">tesla</a> in his honor.<sup id="cite_ref-10" class="reference"><a href="#cite_note-10"><span>[</span>10<span>]</span></a></sup> Tesla has experienced a resurgence in interest in popular culture since the 1990s.<sup id="cite_ref-11" class="reference"><a href="#cite_note-11"><span>[</span>11<span>]</span></a></sup></p>');
+
+        $('[title]').tooltip();
+    </script>
+</body>
+</html>
