@@ -19,4 +19,4 @@ editor();
 htmlEditor('#editableSource','Html String');
 </pre>
 <br>
-<a href="http://ide.nseri.com/">CLICK TO DEMO</a>
+<a href="http://um.lk/wysiwyg">CLICK TO DEMO</a>
